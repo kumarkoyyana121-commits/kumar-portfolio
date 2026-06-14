@@ -1,0 +1,264 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Background blurred video */
+.bgVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(40px) brightness(0.3) saturate(1.5);
+  transform: scale(1.1);
+  z-index: 0;
+}
+
+/* Foreground video - right side */
+.fgVideo {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: auto;
+  max-width: 55%;
+  object-fit: cover;
+  object-position: top center;
+  z-index: 3;
+  mask-image: linear-gradient(to left, rgba(0,0,0,0.9) 50%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.9) 50%, rgba(0,0,0,0) 100%);
+}
+
+/* Gradient overlays */
+.gradientBottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(to top, #0a0a0a 0%, transparent 100%);
+  z-index: 4;
+  pointer-events: none;
+}
+
+.gradientTop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 25%;
+  background: linear-gradient(to bottom, rgba(10,10,10,0.8) 0%, transparent 100%);
+  z-index: 4;
+  pointer-events: none;
+}
+
+.gradientSides {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.6) 45%, transparent 70%);
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Content */
+.content {
+  position: relative;
+  z-index: 5;
+  padding: 0 6vw;
+  max-width: 60%;
+}
+
+.tagline {
+  font-size: clamp(0.55rem, 1vw, 0.7rem);
+  letter-spacing: 0.25em;
+  color: #f97316;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.nameBlock {
+  line-height: 0.88;
+  margin-bottom: 1.5rem;
+}
+
+.firstName,
+.lastName {
+  font-size: clamp(4rem, 10vw, 9rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+  background: linear-gradient(135deg, #ffffff 0%, #d4d4d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+}
+
+.lastName {
+  background: linear-gradient(135deg, #f97316 0%, #fb923c 50%, #fbbf24 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.role {
+  font-size: clamp(0.75rem, 1.2vw, 0.95rem);
+  color: #a1a1aa;
+  letter-spacing: 0.05em;
+  margin-bottom: 2.5rem;
+  font-weight: 400;
+}
+
+/* Stats */
+.stats {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1.5rem;
+}
+
+.stat:first-child {
+  padding-left: 0;
+}
+
+.statNum {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 800;
+  color: #f97316;
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: clamp(0.6rem, 0.8vw, 0.7rem);
+  color: #71717a;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+}
+
+.statDivider {
+  width: 1px;
+  height: 2rem;
+  background: rgba(255,255,255,0.1);
+}
+
+/* Controls */
+.controls {
+  position: absolute;
+  bottom: 2.5rem;
+  right: 2.5rem;
+  z-index: 10;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.controlBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.controlBtn:hover {
+  background: rgba(249,115,22,0.2);
+  border-color: rgba(249,115,22,0.4);
+  transform: scale(1.05);
+}
+
+/* Sound badge */
+.soundBadge {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 10;
+  padding: 0.5rem 1rem;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 2rem;
+  color: #e4e4e7;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  animation: fadeInBadge 0.5s ease;
+}
+
+@keyframes fadeInBadge {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scroll indicator */
+.scrollIndicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.scrollLine {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, rgba(249,115,22,0.8), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(0.5); opacity: 0.4; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .content {
+    max-width: 100%;
+    padding: 0 1.5rem;
+  }
+
+  .fgVideo {
+    opacity: 0.3;
+    max-width: 100%;
+  }
+
+  .firstName, .lastName {
+    font-size: clamp(3rem, 15vw, 5rem);
+  }
+
+  .stats {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .statDivider {
+    display: none;
+  }
+}
